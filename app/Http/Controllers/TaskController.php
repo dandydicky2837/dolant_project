@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\task;
 use App\Http\Requests\StoretaskRequest;
 use App\Http\Requests\UpdatetaskRequest;
+use Illuminate\Console\View\Components\Task as ComponentsTask;
 
 class TaskController extends Controller
 {
@@ -35,8 +36,27 @@ class TaskController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoretaskRequest $request)
-    {
-        //
+    {   
+        $validated = $request->validate([
+            'jenis_pekerjaan' => 'required',
+            'nama_channel' => 'required',
+            'judul_seri' => 'required',
+            'keterangan_kerja' => 'required',
+            'link' => 'required',
+        ]);
+        if ($validated) {
+            $data = [
+                'user_id' => $request->user()->id,
+                'jenis_pekerjaan' => $request->jenis_pekerjaan,
+                'nama_channel' => $request->nama_channel,
+                'judul_seri' => $request->judul_seri,
+                'keterangan_kerja' => $request->keterangan_kerja,
+                'link' => $request->link,
+            ];
+            Task::create($data);
+            return redirect('/home');
+        }
+        return view('create');
     }
 
     /**

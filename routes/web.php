@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,13 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard/home');
+    if (Auth::check()){
+        return redirect('/home');
+    }
+    else {
+        return redirect('/login');
+    }
 });
 
 Auth::routes();
 
-Route::get('dashboard/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/create', function () {
-    return view('dashboard/create');
+    return view('create');
 });
+
+Route::post('/create/add', [App\Http\Controllers\TaskController::class, 'store'])->middleware('auth:sanctum');
