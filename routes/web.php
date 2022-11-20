@@ -27,6 +27,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('admin');
+
 Route::get('/create', function () {
     return view('create');
 });

@@ -28,6 +28,6 @@ class HomeController extends Controller
         if (Auth::user()->role == 1){
             return view('home',['task'=>Task::where('user_id', '=', Auth::user()->id)->paginate(15)]);
         }
-        else return view('admin');
+        else return view('admin',['task'=>Task::paginate(15)]);
     }
 }

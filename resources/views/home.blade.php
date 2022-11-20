@@ -14,7 +14,6 @@
                 <div class="pb-3">
                   <a href='/create' class="btn btn-primary">+ Tambah Data</a>
                 </div>
-          
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -49,6 +48,9 @@
                 </table>
                 {{ $task->withQueryString()->links() }}
                
+          </div>
+          <div class="pb-3">
+            <a href='/create' class="btn btn-primary">Log Out</a>
           </div>
           <!-- AKHIR DATA -->   
 @endsection
