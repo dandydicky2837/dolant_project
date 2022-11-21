@@ -19,8 +19,8 @@
               <th class="col-md-2">Judul Seri</th>
               <th class="col-md-2">Keterangan Kerja</th>
               <th class="col-md-2">Link</th>
-              <th class="col-md-2">Validasi</th>
               <th class="col-md-2">Tanggal</th>
+              <th class="col-md-2">Validasi</th>
           </tr>
       </thead>
       <tbody>
@@ -35,8 +35,8 @@
   <td>{{ $item->keterangan_kerja }}</td>
   <td>{{ $item->link }}</td>
   <td>{{ $item->created_at }}</td>
-  <td>{!! $item->validasi==0?'<button type="button" href=""class="btn btn-primary">Primary</button>':'validate' !!}</td>
-  </tr>
+  <td>{!! $item->validasi==0?'<a type="button" href="/task/acc/'.$item->id.'"class="btn btn-danger">Validasi</a>':'<a type="button" class="btn btn-success">Valid</a>' !!}</td>
+</tr>
   <?php $i++ ?>
   @endforeach
       </tbody>

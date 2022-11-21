@@ -59,6 +59,16 @@ class TaskController extends Controller
         return view('create');
     }
 
+    public function validasi($id)
+    {
+        $task = Task::find($id);
+        $task->validasi = 1;
+        $task->save();
+
+       return redirect('/home'); 
+    }
+
+
     /**
      * Display the specified resource.
      *

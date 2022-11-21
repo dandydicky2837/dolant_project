@@ -39,7 +39,7 @@
                 <td>{{ $item->judul_seri }}</td>
                 <td>{{ $item->keterangan_kerja }}</td>
                 <td>{{ $item->link }}</td>
-                <td>{{ $item->validasi==0?'unvalidated':'validate' }}</td>
+                <td>{!! $item->validasi==0?'<a type="button" class="btn btn-danger">Unvalid</a>':'<a type="button" class="btn btn-success">Valid</a>' !!}</td>
                 <td>{{ $item->created_at }}</td>
                 </tr>
                 <?php $i++ ?>
