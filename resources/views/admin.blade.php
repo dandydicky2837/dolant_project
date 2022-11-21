@@ -9,7 +9,6 @@
                       <button class="btn btn-secondary" type="submit">Cari</button>
                   </form>
                 </div>
-<!-- TOMBOL TAMBAH DATA -->
   <table class="table table-striped">
       <thead>
           <tr>
@@ -35,8 +34,8 @@
   <td>{{ $item->judul_seri }}</td>
   <td>{{ $item->keterangan_kerja }}</td>
   <td>{{ $item->link }}</td>
-  <td>{{ $item->validasi==0?'unvalidated':'validate' }}</td>
   <td>{{ $item->created_at }}</td>
+  <td>{!! $item->validasi==0?'<button type="button" href=""class="btn btn-primary">Primary</button>':'validate' !!}</td>
   </tr>
   <?php $i++ ?>
   @endforeach

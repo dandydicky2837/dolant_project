@@ -34,3 +34,8 @@ Route::get('/create', function () {
 });
 
 Route::post('/create/add', [App\Http\Controllers\TaskController::class, 'store'])->middleware('auth:sanctum');
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+});

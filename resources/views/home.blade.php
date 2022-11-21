@@ -50,7 +50,7 @@
                
           </div>
           <div class="pb-3">
-            <a href='/create' class="btn btn-primary">Log Out</a>
+            <a href='/logout' class="btn btn-primary">Log Out</a>
           </div>
           <!-- AKHIR DATA -->   
 @endsection
