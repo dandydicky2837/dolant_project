@@ -40,4 +40,6 @@ Route::get('/logout', function () {
     return redirect('/login');
 });
 
-Route::get('/task/acc/{id}', [App\Http\Controllers\TaskController::class, 'validasi'])->middleware('auth:sanctum');
+Route::get('/task/acc/{id}', [App\Http\Controllers\TaskController::class, 'validasi'])->middleware('auth:sanctum'); 
+
+

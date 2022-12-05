@@ -1,14 +1,6 @@
 @extends('layouts.template')
 @section('form')        
-        <!-- START DATA -->
-        <div class="my-3 p-3 bg-body rounded shadow-sm">
-                <!-- FORM PENCARIAN -->
-                <div class="pb-3">
-                  <form class="d-flex" action="" method="get">
-                      <input class="form-control me-1" type="search" name="katakunci" value="{{ Request::get('katakunci') }}" placeholder="Masukkan kata kunci" aria-label="Search">
-                      <button class="btn btn-secondary" type="submit">Cari</button>
-                  </form>
-                </div>
+
   <table class="table table-striped">
       <thead>
           <tr>
@@ -19,8 +11,9 @@
               <th class="col-md-2">Judul Seri</th>
               <th class="col-md-2">Keterangan Kerja</th>
               <th class="col-md-2">Link</th>
-              <th class="col-md-2">Tanggal</th>
+              <th class="col-md-2">Aksi</th>
               <th class="col-md-2">Validasi</th>
+              <th class="col-md-2">Tanggal</th>
           </tr>
       </thead>
       <tbody>
@@ -34,8 +27,9 @@
   <td>{{ $item->judul_seri }}</td>
   <td>{{ $item->keterangan_kerja }}</td>
   <td>{{ $item->link }}</td>
-  <td>{{ $item->created_at }}</td>
+  <td>{!!'<a type="button" href="" class="btn btn-danger">Delete</a>','<a type="button" href="" class="btn btn-warning">Edit</a>' !!}</td>
   <td>{!! $item->validasi==0?'<a type="button" href="/task/acc/'.$item->id.'"class="btn btn-danger">Validasi</a>':'<a type="button" class="btn btn-success">Valid</a>' !!}</td>
+  <td>{{ $item->created_at }}</td>
 </tr>
   <?php $i++ ?>
   @endforeach

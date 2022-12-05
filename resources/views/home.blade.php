@@ -24,6 +24,7 @@
                             <th class="col-md-2">Judul Seri</th>
                             <th class="col-md-2">Keterangan Kerja</th>
                             <th class="col-md-2">Link</th>
+                            <th class="col-md-2">Aksi</th>
                             <th class="col-md-2">Validasi</th>
                             <th class="col-md-2">Tanggal</th>
                         </tr>
@@ -39,6 +40,7 @@
                 <td>{{ $item->judul_seri }}</td>
                 <td>{{ $item->keterangan_kerja }}</td>
                 <td>{{ $item->link }}</td>
+                <td>{!! $item->Aksi, '<a type="button" class="btn btn-warning">Edit</a>'!!}</td>
                 <td>{!! $item->validasi==0?'<a type="button" class="btn btn-danger">Unvalid</a>':'<a type="button" class="btn btn-success">Valid</a>' !!}</td>
                 <td>{{ $item->created_at }}</td>
                 </tr>
