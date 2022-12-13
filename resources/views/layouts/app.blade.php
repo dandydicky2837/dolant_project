@@ -21,7 +21,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Dolant Kreatif') }}
+                <img src="/img/logo.png">    Dolant Kreatif
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -71,10 +71,20 @@
                 </div>
             </div>
         </nav>
-
+        <div>
+        <style>
+body {
+  background-image: url('/img/Ilustrasi01.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+</style>
         <main class="py-4">
             @yield('content')
-        </main>
+        </main>    
+        </div>
+        
     </div>
 </body>
 </html>
