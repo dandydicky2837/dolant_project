@@ -104,9 +104,6 @@
                 {{ $task->withQueryString()->links() }}
                
           </div>
-          <div class="pb-3">
-            <a href='/logout' class="btn btn-primary">Log Out</a>
-          </div>
           <!-- AKHIR DATA -->   
 @endsection
        

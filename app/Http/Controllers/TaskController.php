@@ -109,8 +109,12 @@ class TaskController extends Controller
      * @param  \App\Models\task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(task $task)
-    {
-        //
+    public function destroy($id)
+    {   
+        $task=task::find($id);
+        if ($task!=null){
+            $task->delete();
+        }
+        return redirect('/home');
     }
 }

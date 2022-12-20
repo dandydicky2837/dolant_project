@@ -80,7 +80,8 @@
   <td>{{ $item->judul_seri }}</td>
   <td>{{ $item->keterangan_kerja }}</td>
   <td>{{ $item->link }}</td>
-  <td>{!!'<a type="button" href="" class="btn btn-danger">Delete</a>','<a type="button" href="" class="btn btn-warning">Edit</a>' !!}</td>
+  <td>{!!'<form action="task/'.$item->id.'" method="POST"><input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="'.csrf_token().'"><input type="submit" value="Delete" class="btn btn-danger"></form>','<a type="button" href="" class="btn btn-warning">Edit</a>' !!}</td>
   <td>{!! $item->validasi==0?'<a type="button" href="/task/acc/'.$item->id.'"class="btn btn-danger">Validasi</a>':'<a type="button" class="btn btn-success">Valid</a>' !!}</td>
   <td>{{ $item->created_at }}</td>
 </tr>
@@ -91,8 +92,4 @@
   {{ $task->withQueryString()->links() }}
  
 </div>
-<div class="pb-3">
-<a href='/logout' class="btn btn-primary">Log Out</a>
-</div>
-
 @endsection

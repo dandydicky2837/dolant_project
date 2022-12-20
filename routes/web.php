@@ -42,4 +42,6 @@ Route::get('/logout', function () {
 
 Route::get('/task/acc/{id}', [App\Http\Controllers\TaskController::class, 'validasi'])->middleware('auth:sanctum'); 
 
+Route::delete('/task/{id}',[App\Http\Controllers\TaskController::class, 'destroy']);
+
 
