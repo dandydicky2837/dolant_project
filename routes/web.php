@@ -44,4 +44,5 @@ Route::get('/task/acc/{id}', [App\Http\Controllers\TaskController::class, 'valid
 
 Route::delete('/task/{id}',[App\Http\Controllers\TaskController::class, 'destroy']);
 
+Route::get('/task/edit/{id}',[App\Http\Controllers\TaskController::class, 'update']);
 

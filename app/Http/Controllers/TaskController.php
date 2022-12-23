@@ -88,7 +88,7 @@ class TaskController extends Controller
      */
     public function edit(task $task)
     {
-        //
+        return view('/home',compact('task'));
     }
 
     /**
@@ -100,7 +100,18 @@ class TaskController extends Controller
      */
     public function update(UpdatetaskRequest $request, task $task)
     {
-        //
+        $request->validate([
+            'jenis_pekerjaan' => 'required',
+            'nama_channel' => 'required',
+            'judul_seri' => 'required',
+            'keterangan_kerja' => 'required',
+            'link' => 'required',
+         ]);
+  
+         $task->update($task->all());
+  
+         return redirect()->route('task.index')
+                          ->with('succes','data berhasil di ubah');
     }
 
     /**
