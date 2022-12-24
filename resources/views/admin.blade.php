@@ -53,7 +53,33 @@
         </nav>
 @extends('layouts.template')
 @section('form')        
+@if ($message = Session::get('success'))
+<div class="alert alert-success alert-block">
+  <button type="button" class="close" data-dismiss="alert">×</button>	
+    <strong>{{ $message }}</strong>
+</div>
+@endif
 
+@if ($message = Session::get('error'))
+<div class="alert alert-danger alert-block">
+  <button type="button" class="close" data-dismiss="alert">×</button>	
+  <strong>{{ $message }}</strong>
+</div>
+@endif
+
+@if ($message = Session::get('warning'))
+<div class="alert alert-warning alert-block">
+  <button type="button" class="close" data-dismiss="alert">×</button>	
+  <strong>{{ $message }}</strong>
+</div>
+@endif
+
+@if ($message = Session::get('info'))
+<div class="alert alert-info alert-block">
+  <button type="button" class="close" data-dismiss="alert">×</button>	
+  <strong>{{ $message }}</strong>
+</div>
+@endif
   <table class="table table-striped">
       <thead>
           <tr>
@@ -80,8 +106,8 @@
   <td>{{ $item->judul_seri }}</td>
   <td>{{ $item->keterangan_kerja }}</td>
   <td>{{ $item->link }}</td>
-  <td>{!!'<form action="task/'.$item->id.'" method="POST"><input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="_token" value="'.csrf_token().'"><input type="submit" value="Delete" class="btn btn-danger"></form>','<form action="task/edit/'.$item->id.'" method="GET"><input type="submit" value="Edit" class="btn btn-warning"></form>' !!}</td>
+  <td>{!!'<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal'.$item->id.'">Hapus</button><br><br>',
+        '<form action="task/edit/'.$item->id.'" method="GET"><input type="submit" value="Edit" class="btn btn-warning"></form>' !!}</td>
   <td>{!! $item->validasi==0?'<a type="button" href="/task/acc/'.$item->id.'"class="btn btn-danger">Validasi</a>':'<a type="button" class="btn btn-success">Valid</a>' !!}</td>
   <td>{{ $item->created_at }}</td>
 </tr>
@@ -92,4 +118,34 @@
   {{ $task->withQueryString()->links() }}
  
 </div>
+
+@foreach ($task as $item)
+<!-- Modal -->
+<div class="modal fade" id="Modal{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> Apakah anda yakin ingin menghapus data?</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        Jenis pekerjaan : {{$item->jenis_pekerjaan}}<br>
+        Nama Channel : {{$item->nama_channel}}<br>
+        Judul Seri : {{$item->judul_seri}}<br>
+        Keterangan Kerja : {{$item->keterangan_kerja}}<br>
+        Link : {{$item->link}}<br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+          {!!'<form action="task/'.$item->id.'" method="POST"><input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="'.csrf_token().'"><input type="submit" value="Hapus" class="btn btn-danger"></form>'!!}
+        </div>
+      </div>
+    </div>
+  </div>
+@endforeach
+
+
 @endsection

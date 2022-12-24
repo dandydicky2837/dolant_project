@@ -62,6 +62,34 @@
                       <button class="btn btn-secondary" type="submit">Cari</button>
                   </form>
                 </div>
+
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>	
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
+
+                @if ($message = Session::get('error'))
+                    <div class="alert alert-danger alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>	
+                    <strong>{{ $message }}</strong>
+                    </div>
+                @endif
+
+                @if ($message = Session::get('warning'))
+                    <div class="alert alert-warning alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>	
+                    <strong>{{ $message }}</strong>
+                    </div>
+                @endif
+
+                @if ($message = Session::get('info'))
+                    <div class="alert alert-info alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>	
+                    <strong>{{ $message }}</strong>
+                    </div>
+                @endif
                 
                 <!-- TOMBOL TAMBAH DATA -->
                 <div class="pb-3">
@@ -93,7 +121,7 @@
                 <td>{{ $item->judul_seri }}</td>
                 <td>{{ $item->keterangan_kerja }}</td>
                 <td>{{ $item->link }}</td>
-                <td>{!! $item->Aksi, '<a type="button" class="btn btn-warning">Edit</a>'!!}</td>
+                <td>{!! $item->Aksi, '<a type="button" class="btn btn-warning" href="'.url('/task/edit/'.$item->id).'"">Edit</a>'!!}</td>
                 <td>{!! $item->validasi==0?'<a type="button" class="btn btn-danger">Unvalid</a>':'<a type="button" class="btn btn-success">Valid</a>' !!}</td>
                 <td>{{ $item->created_at }}</td>
                 </tr>

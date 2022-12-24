@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\task;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -15,10 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    if (Auth::check()){
+    if (Auth::check()) {
         return redirect('/home');
-    }
-    else {
+    } else {
         return redirect('/login');
     }
 });
@@ -40,9 +41,17 @@ Route::get('/logout', function () {
     return redirect('/login');
 });
 
-Route::get('/task/acc/{id}', [App\Http\Controllers\TaskController::class, 'validasi'])->middleware('auth:sanctum'); 
+Route::get('/task/acc/{id}', [App\Http\Controllers\TaskController::class, 'validasi'])->middleware('auth:sanctum');
 
-Route::delete('/task/{id}',[App\Http\Controllers\TaskController::class, 'destroy']);
+Route::delete('/task/{id}', [App\Http\Controllers\TaskController::class, 'destroy']);
 
-Route::get('/task/edit/{id}',[App\Http\Controllers\TaskController::class, 'update']);
+Route::get('/task/edit/{id}', function ($id) {
+    $task = task::find($id);
+    if ($task != null) {
+        return view('create', ['data' => $task]);
+    } else {
+        abort(404);
+    }
+});
+Route::post('/task/edit/{id}', [App\Http\Controllers\TaskController::class, 'update'])->middleware('auth:sanctum');
 

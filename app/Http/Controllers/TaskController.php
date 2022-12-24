@@ -98,20 +98,32 @@ class TaskController extends Controller
      * @param  \App\Models\task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatetaskRequest $request, task $task)
+    public function update(UpdatetaskRequest $request, $id)
     {
-        $request->validate([
+        $task = task::find($id);
+        if ($task==null) {
+            redirect('/home')
+                          ->with(['error'=>'data tidak ditemukan']);
+        }
+        $validated = $request->validate([
             'jenis_pekerjaan' => 'required',
             'nama_channel' => 'required',
             'judul_seri' => 'required',
             'keterangan_kerja' => 'required',
             'link' => 'required',
          ]);
+
+         if (!$validated) {
+            
+            redirect('/home')
+                          ->with(['error'=>'data tidak valid']);
+         }
   
-         $task->update($task->all());
+         $task->update($validated);
+         $task->save();
   
-         return redirect()->route('task.index')
-                          ->with('succes','data berhasil di ubah');
+         return redirect('/home')
+                          ->with(['success'=>'data berhasil di ubah']);
     }
 
     /**
