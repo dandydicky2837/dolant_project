@@ -25,17 +25,17 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        if (Auth::user()->role == 1){
-            return view('home',['task'=>Task::where('user_id', '=', Auth::user()->id)->paginate(15)]);
-        }
-        else return view('admin',['task'=>Task::paginate(15)]);
-
+        $task;
         if ($request->has('search')){
             $task = task::where('name','LIKE','%'.$request.'%')->get();
         }
         else{
             $task = task::all();
         }
+        if (Auth::user()->role == 1){
+            return view('home',['task'=>$task->where('user_id', '=', Auth::user()->id)->paginate(15)]);
+        }
+        else return view('admin',['task'=>$task->where('user_id', '!=', null)->paginate(15)]);
 
         return view('/home');
     }
