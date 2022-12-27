@@ -23,11 +23,21 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         if (Auth::user()->role == 1){
             return view('home',['task'=>Task::where('user_id', '=', Auth::user()->id)->paginate(15)]);
         }
         else return view('admin',['task'=>Task::paginate(15)]);
+
+        if ($request->has('search')){
+            $task = task::where('name','LIKE','%'.$request.'%')->get();
+        }
+        else{
+            $task = task::all();
+        }
+
+        return view('/home');
     }
+    
 }

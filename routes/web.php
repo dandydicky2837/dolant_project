@@ -54,4 +54,3 @@ Route::get('/task/edit/{id}', function ($id) {
     }
 });
 Route::post('/task/edit/{id}', [App\Http\Controllers\TaskController::class, 'update'])->middleware('auth:sanctum');
-

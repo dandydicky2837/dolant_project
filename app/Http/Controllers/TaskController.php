@@ -140,4 +140,15 @@ class TaskController extends Controller
         }
         return redirect('/home');
     }
+
+    public function search(Request $request){
+        if ($request->has('search')){
+            $task = task::where('name','LIKE','%'.$request.'%')->get();
+        }
+        else{
+            $task = task::all();
+        }
+
+        return view('/home');
+    }
 }
